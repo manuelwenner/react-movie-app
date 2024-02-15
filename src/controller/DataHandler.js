@@ -44,13 +44,22 @@ class DataHandler {
   }
 
   deleteMovie(movieId) {
-    this.movies = this.getMovies().filter((movie) => movie.id !== movieId);
+    // this.movies = this.getMovies().filter((movie) => movie.id !== movieId);
+    this.movies = this.movies.filter((movie) => movie.id !== movieId);
     return this.getMovies();
   }
 
   addMovie = (movie) => {
     // getMovies().push(movie); // erstellt keine neue Kopie des arrays
     this.movies = [...this.getMovies(), movie];  // erstellt eine neue Kopie des arrays
+    return this.getMovies();
+  };
+
+  rateMovie = (movieId, rating) => {
+    this.movies = this.getMovies().map((movie) =>
+      movie.id === movieId ? { ...movie, rating } : movie
+    );
+
     return this.getMovies();
   };
 

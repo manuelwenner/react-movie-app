@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieList = ({ movies, onDelete }) => {
+const MovieList = ({ movies, onDelete, onRate }) => {
 
   return (
     <>
@@ -11,6 +11,7 @@ const MovieList = ({ movies, onDelete }) => {
             <p>{movie.description}</p>
             <p>Bewertung: {movie.rating}</p>
             <button onClick={() => onDelete(movie.id)}>löschen</button>
+            <button onClick={() => onRate(movie.id)}>bewerten</button>
             <hr />
           </>
         </div>

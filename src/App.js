@@ -18,6 +18,16 @@ function App() {
     setMovies(dataHandler.addMovie(movie));
   };
 
+  const handleRateMovie = (movieId) => {
+    const rating = parseFloat(prompt('Bitte geben Sie eine Bewertung ein (0-10):'));
+    if (isNaN(rating) || rating < 0 || rating > 10) {
+      alert("Bewertung muss zwischen 0 und 10");
+      return;
+    }
+
+    setMovies(dataHandler.rateMovie(movieId, rating));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -25,6 +35,7 @@ function App() {
         <MovieList
           movies={movies}
           onDelete={handleDeleteMovie}
+          onRate={handleRateMovie}
         />
 
         <button onClick={() => handleAddMovie()}>hinzufügen</button>
