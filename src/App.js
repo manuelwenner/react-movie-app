@@ -28,6 +28,14 @@ function App() {
     setMovies(dataHandler.rateMovie(movieId, rating));
   };
 
+  const handleEdit = (id, title, description) => {
+    setMovies(dataHandler.editMovie(id, title, description))
+  };
+
+  const handleToggleFavorit = (movieId) => {
+    setMovies(dataHandler.toggleFavorite(movieId));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -36,6 +44,8 @@ function App() {
           movies={movies}
           onDelete={handleDeleteMovie}
           onRate={handleRateMovie}
+          onEdit={handleEdit}
+          onToggleFavorite={handleToggleFavorit}
         />
 
         <button onClick={() => handleAddMovie()}>hinzufügen</button>

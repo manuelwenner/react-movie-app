@@ -63,6 +63,24 @@ class DataHandler {
     return this.getMovies();
   };
 
+  editMovie = (movieId, title, description) => {
+    this.movies = this.getMovies().map((movie) =>
+      movie.id === movieId ? { ...movie, title, description } : movie
+    )
+
+    return this.getMovies();
+  };
+
+
+  toggleFavorite = (movieId) => {
+    this.movies = this.getMovies().map((movie) =>
+      movie.id === movieId ? { ...movie, isFavorite: !movie.isFavorite } : movie
+    );
+
+    return this.getMovies();
+  };
+
+
 }
 
 export default DataHandler;

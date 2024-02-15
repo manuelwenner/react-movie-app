@@ -16,6 +16,12 @@ Clone the repository and install dependencies by running
 
 ```npm install```
 
+For Icons react-fontawesome is used. To install run the following commands
+```
+npm i @fortawesome/react-fontawesome
+npm i @fortawesome/free-regular-svg-icons
+npm i @fortawesome/free-solid-svg-icons
+```
 
 ### Available scripts
 
