@@ -13,6 +13,11 @@ function App() {
     setMovies(dataHandler.deleteMovie(id));
   };
 
+  const handleAddMovie = () => {
+    var movie = { id: movies.length + 1, title: 'New Movie', description: 'Super toller neuer Film', rating: 10 };
+    setMovies(dataHandler.addMovie(movie));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +26,8 @@ function App() {
           movies={movies}
           onDelete={handleDeleteMovie}
         />
+
+        <button onClick={() => handleAddMovie()}>hinzufügen</button>
       </header>
     </div>
   );
