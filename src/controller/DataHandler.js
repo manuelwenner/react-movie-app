@@ -71,7 +71,6 @@ class DataHandler {
     return this.getMovies();
   };
 
-
   toggleFavorite = (movieId) => {
     this.movies = this.getMovies().map((movie) =>
       movie.id === movieId ? { ...movie, isFavorite: !movie.isFavorite } : movie
@@ -79,8 +78,6 @@ class DataHandler {
 
     return this.getMovies();
   };
-
-
 }
 
 export default DataHandler;
