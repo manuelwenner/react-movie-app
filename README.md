@@ -8,7 +8,7 @@ The project is work in progress, right now you can:
 - 
 
 ## Demo
-TODO
+The latest code is deployed to https://react-movie-app-nine-umber.vercel.app/
 
 ## Usage and development
 
