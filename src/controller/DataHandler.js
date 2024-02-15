@@ -40,48 +40,58 @@ class DataHandler {
   }
 
   getMovies() {
-    return this.movies;
+    return JSON.parse(localStorage.getItem('movies')) || this.movies;
   }
 
   deleteMovie(movieId) {
-    // this.movies = this.getMovies().filter((movie) => movie.id !== movieId);
-    this.movies = this.movies.filter((movie) => movie.id !== movieId);
+    var movies = this.getMovies().filter((movie) => movie.id !== movieId);
+    this.saveMovies(movies);
     return this.getMovies();
   }
 
   addMovie = (movie) => {
     // getMovies().push(movie); // erstellt keine neue Kopie des arrays
-    this.movies = [...this.getMovies(), movie];  // erstellt eine neue Kopie des arrays
+    var movies = [...this.getMovies(), movie];  // erstellt eine neue Kopie des arrays
+    this.saveMovies(movies);
     return this.getMovies();
   };
 
   rateMovie = (movieId, rating) => {
-    this.movies = this.getMovies().map((movie) =>
+    var movies = this.getMovies().map((movie) =>
       movie.id === movieId ? { ...movie, rating } : movie
     );
 
+    this.saveMovies(movies);
     return this.getMovies();
   };
 
   editMovie = (movieId, title, description) => {
-    this.movies = this.getMovies().map((movie) =>
+    var movies = this.getMovies().map((movie) =>
       movie.id === movieId ? { ...movie, title, description } : movie
     )
 
+    this.saveMovies(movies);
     return this.getMovies();
   };
 
+
   toggleFavorite = (movieId) => {
-    this.movies = this.getMovies().map((movie) =>
+    var movies = this.getMovies().map((movie) =>
       movie.id === movieId ? { ...movie, isFavorite: !movie.isFavorite } : movie
     );
 
+    this.saveMovies(movies);
     return this.getMovies();
   };
 
   getFavorites = () => {
     return this.getMovies().filter((movie) => movie.isFavorite === true);
   };
+
+  saveMovies = (movies) => {
+    localStorage.setItem('movies', JSON.stringify(movies));
+  }
+
 }
 
 export default DataHandler;
