@@ -23,6 +23,9 @@ npm i @fortawesome/free-regular-svg-icons
 npm i @fortawesome/free-solid-svg-icons
 ```
 
+Routing is implemented with react-router-dom in version 6.22.0
+```npm install react-router-dom```
+
 ### Available scripts
 
 This project was bootstrapped with Create React App, so all its scripts are available in the client folder:

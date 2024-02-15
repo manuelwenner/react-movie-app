@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 
-import './App.css';
 import MovieList from './components/MovieList';
 import DataHandler from './controller/DataHandler';
+
+import './App.css';
+import FavoriteMovies from './components/FavoriteMovies';
+
 
 const dataHandler = new DataHandler();
 
 function App() {
   const [movies, setMovies] = useState(dataHandler.getMovies());
+  const favorites = dataHandler.getFavorites();
 
   const handleDeleteMovie = (id) => {
     setMovies(dataHandler.deleteMovie(id));
@@ -36,19 +41,71 @@ function App() {
     setMovies(dataHandler.toggleFavorite(movieId));
   };
 
+  // some simple styling for our navigation bar
+  const styles = {
+    nav: {
+      display: 'flex',
+      justifyContent: 'space-around',
+      listStyle: 'none',
+      paddingBottom: 64,
+      borderBottom: '1px grey solid'
+    },
+    navLi: {
+      marginRight: 64
+    }
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Film- und Serienliste ({movies.length})</h2>
-        <MovieList
-          movies={movies}
-          onDelete={handleDeleteMovie}
-          onRate={handleRateMovie}
-          onEdit={handleEdit}
-          onToggleFavorite={handleToggleFavorit}
-        />
+      <Router>
+        <nav>
+          <ul style={styles.nav}>
+            <li style={styles.navLi}>
+              <NavLink
+                to=""
+                style={({ isActive }) => ({
+                  textDecoration: isActive ? 'underline' : 'none',
+                })}
+              >Film- und Serienliste</NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="favoriten"
+                style={({ isActive }) => ({
+                  textDecoration: isActive ? 'underline' : 'none',
+                })}
+              >Favoriten ({dataHandler.getFavorites().length})</NavLink>
+            </li>
+          </ul>
+        </nav>
 
-        <button onClick={() => handleAddMovie()}>hinzufügen</button>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <h2>Film- und Serienliste</h2>
+              <MovieList
+                movies={movies}
+                onDelete={handleDeleteMovie}
+                onRate={handleRateMovie}
+                onEdit={handleEdit}
+                onToggleFavorite={handleToggleFavorit}
+              />
+
+              <button onClick={() => handleAddMovie()}>hinzufügen</button>
+
+            </>
+          } />
+          <Route path="/favoriten" element={
+            <FavoriteMovies
+              favoriteMovies={favorites}
+              onToggleFavorite={handleToggleFavorit}
+            />
+          } />
+        </Routes>
+
+      </Router>
       </header>
     </div>
   );

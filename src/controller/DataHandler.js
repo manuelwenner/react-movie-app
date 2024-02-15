@@ -78,6 +78,10 @@ class DataHandler {
 
     return this.getMovies();
   };
+
+  getFavorites = () => {
+    return this.getMovies().filter((movie) => movie.isFavorite === true);
+  };
 }
 
 export default DataHandler;
