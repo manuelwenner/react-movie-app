@@ -84,7 +84,6 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <h2>Film- und Serienliste</h2>
               <MovieList
                 movies={movies}
                 onDelete={handleDeleteMovie}
