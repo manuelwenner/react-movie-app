@@ -43,6 +43,11 @@ class DataHandler {
       return this.movies;
     }
 
+    deleteMovie(movieId) {
+        this.movies = this.getMovies().filter((movie) => movie.id !== movieId);
+        return this.movies;
+      }
+
   }
   
   export default DataHandler;
